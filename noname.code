@@ -1,0 +1,25 @@
+Method main()
+    // Объявляем переменную 
+    File fIn;
+    // Открываем файл big data 
+    fIn.open("big.data", "r");
+    // Объявляем переменную 
+    PCRE re; 
+    // Компилируем регулярное выражение
+    re.compile(`^([a-z]+[a-zA-Z0-9]*)\["([^"]+)"\]\s*=\s*(\d+)\s*;`);
+    // Объявляем строку для хранения считанных данных 
+    String buf; 
+
+    // Читаем строки из файла пока не дочитаем все строки или считаем пустую строку 
+    while (fIn.readLine(string = &buf) && buf.size() > 0)
+    {
+        // Выполняем регулярное выражение на считанной строке и сохраняем результаты
+        Deque(String) results = re.exec(string = &buf, returnStrings = true);
+
+        // Проверяем, были ли найдены совпадения
+        if (results.size() > 0)
+        {
+            // Выводим найденные элементы
+            print(format="Found new element: array: %a%, index = %i%, value = %v%\n", a=&results[1], i=&results[2], v=&results[3]);
+        }
+    }
